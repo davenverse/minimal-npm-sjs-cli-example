@@ -1,4 +1,4 @@
-package io.chrisdavenport.minimalnpmcliexample
+package io.chrisdavenport.minimalnpmsjscliexample
 
 import munit.CatsEffectSuite
 import cats.effect._
