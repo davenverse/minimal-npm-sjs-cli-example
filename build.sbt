@@ -52,7 +52,9 @@ npmPackageAdditionalNpmConfig := {
 // Build Stuff For Automated Releases
 // Only release on tags named v...
 ThisBuild / githubWorkflowTargetTags += "v*"
-ThisBuild / githubWorkflowPublishCond := Some("startsWith(github.ref, 'refs/tags/v')")
+ThisBuild / githubWorkflowPublishTargetBranches := Seq(
+  RefPredicate.StartsWith(Ref.Tag("v")),
+)
 ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
   UseRef.Public("actions", "setup-node", "v1"),
   Map(
