@@ -51,7 +51,8 @@ npmPackageAdditionalNpmConfig := {
 
 // Build Stuff For Automated Releases
 // Only release on tags named v...
-ThisBuild / githubWorkflowPublishCond := Some("github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v'))")
+ThisBuild / githubWorkflowTargetTags += "v*"
+ThisBuild / githubWorkflowPublishCond := Some("startsWith(github.ref, 'refs/tags/v')")
 ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
   UseRef.Public("actions", "setup-node", "v1"),
   Map(
