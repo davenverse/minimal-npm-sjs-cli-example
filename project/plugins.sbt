@@ -1,0 +1,5 @@
+addSbtPlugin("org.typelevel" % "sbt-typelevel-github-actions" % "0.4.9")
+addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
+// addSbtPlugin("org.typelevel" % "sbt-typelevel-versioning" % "0.4.9")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.10.0")
+addSbtPlugin("io.chrisdavenport" % "sbt-npm-package" % "0.1.1")
