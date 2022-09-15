@@ -1,5 +1,4 @@
 ThisBuild / resolvers ++= Resolver.sonatypeOssRepos("snapshots")
-addSbtPlugin("org.typelevel" % "sbt-typelevel-no-publish" % "0.4.12")
 addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.11.0")
-addSbtPlugin("io.chrisdavenport" % "sbt-npm-package-github-actions" % "0.1.1+21-3c985de2-SNAPSHOT")
+addSbtPlugin("io.chrisdavenport" % "sbt-npm-package-github-actions" % "0.1.1+23-8232116c-SNAPSHOT")

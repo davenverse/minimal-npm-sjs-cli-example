@@ -146,9 +146,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Publish project
-        run: sbt '++${{ matrix.scala }}' +publish
-
       - name: Publish artifacts to npm
         if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v'))
         env:
