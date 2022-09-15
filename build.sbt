@@ -50,11 +50,3 @@ npmPackageAdditionalNpmConfig := {
     )
   )
 }
-
-
-// Build Stuff For Automated Releases
-// Only release on tags named v...
-ThisBuild / githubWorkflowTargetTags += "v*"
-ThisBuild / githubWorkflowPublishTargetBranches := Seq(
-  RefPredicate.StartsWith(Ref.Tag("v")),
-)
