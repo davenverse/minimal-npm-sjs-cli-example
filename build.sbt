@@ -5,6 +5,9 @@ ThisBuild / licenses := Seq(License.MIT)
 ThisBuild / scalaVersion := "3.2.0"
 ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 
+enablePlugins(NoPublishPlugin)
+
+
 val catsV = "2.7.0"
 val catsEffectV = "3.3.12"
 val fs2V = "3.2.7"
@@ -55,35 +58,35 @@ ThisBuild / githubWorkflowTargetTags += "v*"
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.StartsWith(Ref.Tag("v")),
 )
-ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
-  UseRef.Public("actions", "setup-node", "v1"),
-  Map(
-    "node-version" -> "14"
-  )
-))
+// ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
+//   UseRef.Public("actions", "setup-node", "v1"),
+//   Map(
+//     "node-version" -> "14"
+//   )
+// ))
 
-ThisBuild / githubWorkflowBuild ++= Seq(
-  WorkflowStep.Sbt(
-    List("npmPackageInstall"),
-    name = Some("Install artifacts to npm")
-  )
-)
+// ThisBuild / githubWorkflowBuild ++= Seq(
+//   WorkflowStep.Sbt(
+//     List("npmPackageInstall"),
+//     name = Some("Install artifacts to npm")
+//   )
+// )
 
-ThisBuild / githubWorkflowPublishPreamble ++= Seq(
-  WorkflowStep.Use(
-    UseRef.Public("actions", "setup-node", "v1"),
-    Map(
-      "node-version" -> "14",
-    ),
-  )
-)
+// ThisBuild / githubWorkflowPublishPreamble ++= Seq(
+//   WorkflowStep.Use(
+//     UseRef.Public("actions", "setup-node", "v1"),
+//     Map(
+//       "node-version" -> "14",
+//     ),
+//   )
+// )
 
-ThisBuild / githubWorkflowPublish := Seq(
-  WorkflowStep.Sbt(
-    List("npmPackageNpmrc", "npmPackagePublish"),
-    name = Some("Publish artifacts to npm"),
-    env = Map(
-      "NPM_TOKEN" -> "${{ secrets.NPM_TOKEN }}" // https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow#set-the-token-as-an-environment-variable-on-the-cicd-server
-    ),
-  )
-)
+// ThisBuild / githubWorkflowPublish := Seq(
+//   WorkflowStep.Sbt(
+//     List("npmPackageNpmrc", "npmPackagePublish"),
+//     name = Some("Publish artifacts to npm"),
+//     env = Map(
+//       "NPM_TOKEN" -> "${{ secrets.NPM_TOKEN }}" // https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow#set-the-token-as-an-environment-variable-on-the-cicd-server
+//     ),
+//   )
+// )
