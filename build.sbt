@@ -5,9 +5,6 @@ ThisBuild / licenses := Seq(License.MIT)
 ThisBuild / scalaVersion := "3.2.0"
 ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 
-enablePlugins(NoPublishPlugin)
-
-
 val catsV = "2.7.0"
 val catsEffectV = "3.3.12"
 val fs2V = "3.2.7"
