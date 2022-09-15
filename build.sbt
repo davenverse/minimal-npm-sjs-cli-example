@@ -58,35 +58,3 @@ ThisBuild / githubWorkflowTargetTags += "v*"
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.StartsWith(Ref.Tag("v")),
 )
-// ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
-//   UseRef.Public("actions", "setup-node", "v1"),
-//   Map(
-//     "node-version" -> "14"
-//   )
-// ))
-
-// ThisBuild / githubWorkflowBuild ++= Seq(
-//   WorkflowStep.Sbt(
-//     List("npmPackageInstall"),
-//     name = Some("Install artifacts to npm")
-//   )
-// )
-
-// ThisBuild / githubWorkflowPublishPreamble ++= Seq(
-//   WorkflowStep.Use(
-//     UseRef.Public("actions", "setup-node", "v1"),
-//     Map(
-//       "node-version" -> "14",
-//     ),
-//   )
-// )
-
-// ThisBuild / githubWorkflowPublish := Seq(
-//   WorkflowStep.Sbt(
-//     List("npmPackageNpmrc", "npmPackagePublish"),
-//     name = Some("Publish artifacts to npm"),
-//     env = Map(
-//       "NPM_TOKEN" -> "${{ secrets.NPM_TOKEN }}" // https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow#set-the-token-as-an-environment-variable-on-the-cicd-server
-//     ),
-//   )
-// )
