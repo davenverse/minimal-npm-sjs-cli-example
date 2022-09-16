@@ -55,6 +55,7 @@ npmPackageStage := org.scalajs.sbtplugin.Stage.FullOpt
 npmPackageAdditionalNpmConfig := {
   Map(
     "bin" -> _root_.io.circe.Json.obj(
+      // This needs to be set to the value you want your application to be called.
       "minimal-npm-sjs-cli-example" -> _root_.io.circe.Json.fromString("main.js")
     )
   )
