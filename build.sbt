@@ -36,6 +36,7 @@ libraryDependencies ++= Seq(
 // JS Configuration
 enablePlugins(ScalaJSPlugin)
 scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule)}
+// Required for applications
 scalaJSUseMainModuleInitializer := true
 
 // NPM Configuration
@@ -48,10 +49,13 @@ npmPackageKeywords := Seq(
   "sjs"
 )
 npmPackageBinaryEnable := true
+// Optimizes the output js
 npmPackageStage := org.scalajs.sbtplugin.Stage.FullOpt
+// Establishes this has an executable, not necessary for work intended as npm libraries.
 npmPackageAdditionalNpmConfig := {
   Map(
     "bin" -> _root_.io.circe.Json.obj(
+      // This needs to be set to the value you want your application to be called.
       "minimal-npm-sjs-cli-example" -> _root_.io.circe.Json.fromString("main.js")
     )
   )
