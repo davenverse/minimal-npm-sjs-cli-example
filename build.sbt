@@ -8,7 +8,7 @@ ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 val catsV = "2.7.0"
 val catsEffectV = "3.3.12"
 val fs2V = "3.2.7"
-val doobieV = "1.0.0-RC2"
+val http4sV = "0.23.13"
 val munitCatsEffectV = "1.0.7"
 
 name := "minimal-npm-sjs-cli-example"
@@ -17,8 +17,17 @@ libraryDependencies ++= Seq(
   "org.typelevel"               %%% "cats-core"                  % catsV,
   "org.typelevel"               %%% "cats-effect"                % catsEffectV,
 
-  "co.fs2"                      %%% "fs2-core"                   % fs2V,
-  "co.fs2"                      %%% "fs2-io"                     % fs2V,
+  // fs2-io has extremely helpful utilities like Files
+  // "co.fs2"                      %%% "fs2-core"                   % fs2V,
+  // "co.fs2"                      %%% "fs2-io"                     % fs2V,
+
+  // process has tools to run shell scripts and programs, very handy
+  // "io.chrisdavenport"           %%% "process" % "0.0.2",
+
+  // Http Elements you may find useful
+  // "org.http4s" %%% "http4s-ember-client" % http4sV,
+  // "org.http4s" %%% "http4s-ember-server" % http4sV,
+  // "org.http4s" %%% "http4s-circe" % http4sV,
 
   "org.typelevel"               %%% "munit-cats-effect-3"        % munitCatsEffectV         % Test,
 
@@ -47,43 +56,3 @@ npmPackageAdditionalNpmConfig := {
     )
   )
 }
-
-
-// Build Stuff For Automated Releases
-// Only release on tags named v...
-ThisBuild / githubWorkflowTargetTags += "v*"
-ThisBuild / githubWorkflowPublishTargetBranches := Seq(
-  RefPredicate.StartsWith(Ref.Tag("v")),
-)
-ThisBuild / githubWorkflowBuildPreamble ++= Seq(WorkflowStep.Use(
-  UseRef.Public("actions", "setup-node", "v1"),
-  Map(
-    "node-version" -> "14"
-  )
-))
-
-ThisBuild / githubWorkflowBuild ++= Seq(
-  WorkflowStep.Sbt(
-    List("npmPackageInstall"),
-    name = Some("Install artifacts to npm")
-  )
-)
-
-ThisBuild / githubWorkflowPublishPreamble ++= Seq(
-  WorkflowStep.Use(
-    UseRef.Public("actions", "setup-node", "v1"),
-    Map(
-      "node-version" -> "14",
-    ),
-  )
-)
-
-ThisBuild / githubWorkflowPublish := Seq(
-  WorkflowStep.Sbt(
-    List("npmPackageNpmrc", "npmPackagePublish"),
-    name = Some("Publish artifacts to npm"),
-    env = Map(
-      "NPM_TOKEN" -> "${{ secrets.NPM_TOKEN }}" // https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow#set-the-token-as-an-environment-variable-on-the-cicd-server
-    ),
-  )
-)
