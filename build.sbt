@@ -2,7 +2,7 @@ ThisBuild / organization := "io.chrisdavenport"
 ThisBuild / organizationName := "Christopher Davenport"
 ThisBuild / licenses := Seq(License.MIT)
 
-ThisBuild / scalaVersion := "3.2.0"
+ThisBuild / scalaVersion := "3.2.2"
 ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 
 val catsV = "2.7.0"
